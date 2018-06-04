@@ -31,7 +31,11 @@ defmodule BehavesLikeTest do
             {:::, _,
              [
                {:get, _, [{:id, _, nil}]},
-               {:|, _, [ok: {:result, _, nil}, error: {:error, _, nil}]}
-             ]}, {BehavesLikeTest.API, {1, 2}}} = API.callbacks() |> List.first()
+               {:|, _,
+                [
+                  ok: {:result, _, nil},
+                  error: {:error, _, nil}
+                ]}
+             ]}, {BehavesLikeTest.API, {15, 2}}} = API.callbacks() |> List.first()
   end
 end

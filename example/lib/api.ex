@@ -2,7 +2,7 @@ defmodule Example.API do
   use BehavesLike
 
   @type id :: binary()
-  @type result :: any()
+  @type result :: Example.Type.t()
   @type error :: any()
 
   @spec get(id) :: {:ok, result} | {:error, error}

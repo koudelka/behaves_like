@@ -35,7 +35,7 @@ defmodule BehavesLike do
   defmacro __before_compile__(_env) do
     quote do
       Enum.map(@spec, fn {:spec, spec, _position} ->
-        Module.eval_quoted(__MODULE__, quote(do: @callback(unquote(spec))))
+        Module.eval_quoted(__ENV__, quote(do: @callback(unquote(spec))))
       end)
     end
   end
