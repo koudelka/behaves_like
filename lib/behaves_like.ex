@@ -34,9 +34,20 @@ defmodule BehavesLike do
 
   defmacro __before_compile__(_env) do
     quote do
-      Enum.map(@spec, fn {:spec, spec, _position} ->
-        Module.eval_quoted(__ENV__, quote(do: @callback(unquote(spec))))
-      end)
+      {_set, bag} = :elixir_module.data_tables(__MODULE__)
+      unquote(__MODULE__).get_typespecs(bag, :spec)
+      |> Enum.each(&unquote(__MODULE__).store_typespec(bag, :callback, &1))
     end
+  end
+
+  @doc false
+  def get_typespecs(bag, type) do
+    :ets.lookup_element(bag, type, 2)
+  end
+
+  @doc false
+  def store_typespec(bag, key, value) do
+    :ets.insert(bag, {key, value})
+    :ok
   end
 end

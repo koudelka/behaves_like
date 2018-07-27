@@ -7,11 +7,11 @@ defmodule BehavesLike.MixProject do
     [
       app: :behaves_like,
       version: @version,
-      elixir: "~> 1.5",
+      elixir: "~> 1.7.1",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       dialyzer: dialyzer(),
-      description: "Automatically creates a behaviour from a module's specs.",
+      description: "Automatically creates a behaviour from a module's specs. This lib uses undocumented calls, please don't use it. :)",
       package: package(),
       docs: docs(),
     ]
