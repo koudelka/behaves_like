@@ -7,12 +7,15 @@ Turns a module's specs into callbacks.
 
 Lets you state that a module behaves like another, without writing behaviour callbacks.
 
+Uses a macro for 1.7, until https://github.com/elixir-lang/elixir/issues/8085 is fixed.
+
 For example:
 ```elixir
 defmodule API do
   use BehavesLike
+  import BehavesLike, only: [spec_and_callback: 1]
 
-  @spec get(binary()) :: {:ok, any()} | {:error, any()}
+  spec_and_callback get(binary()) :: {:ok, any()} | {:error, any()}
   def get(id) do
     Backend.get(id)
   end
@@ -28,8 +31,6 @@ defmodule Backend do
 end
 ```
 
-Please note, this library uses undocumented private calls to manipulate the elixir compiler's ets tables. Use at your own risk.
-
 ## Installation
 
 From Hex:
@@ -44,4 +45,4 @@ end
 
 ## Usage
 
-Just add `use BehavesLike` to your module, then you can use the standard `@behaviour` attribute in other modules to refer to it.
+Import the required macro, then declare your specs with `spec_and_callback/1`, as in the example above.

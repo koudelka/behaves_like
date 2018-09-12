@@ -7,9 +7,9 @@ defmodule BehavesLike do
   For example:
   ```elixir
     defmodule API do
-      use BehavesLike
+      import BehavesLike, only: [spec_and_callback: 1]
 
-      @spec get(binary()) :: {:ok, any()} | {:error, any()}
+      spec_and_callback get(binary()) :: {:ok, any()} | {:error, any()}
       def get(id) do
         Backend.get(id)
       end
@@ -26,28 +26,10 @@ defmodule BehavesLike do
   ```
   """
 
-  defmacro __using__(_opts) do
+  defmacro spec_and_callback(spec) do
     quote do
-      @before_compile unquote(__MODULE__)
+      @spec unquote(spec)
+      @callback unquote(spec)
     end
-  end
-
-  defmacro __before_compile__(_env) do
-    quote do
-      {_set, bag} = :elixir_module.data_tables(__MODULE__)
-      unquote(__MODULE__).get_typespecs(bag, :spec)
-      |> Enum.each(&unquote(__MODULE__).store_typespec(bag, :callback, &1))
-    end
-  end
-
-  @doc false
-  def get_typespecs(bag, type) do
-    :ets.lookup_element(bag, type, 2)
-  end
-
-  @doc false
-  def store_typespec(bag, key, value) do
-    :ets.insert(bag, {key, value})
-    :ok
   end
 end

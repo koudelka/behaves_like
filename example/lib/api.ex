@@ -1,11 +1,11 @@
 defmodule Example.API do
-  use BehavesLike
+  import BehavesLike, only: [spec_and_callback: 1]
 
   @type id :: binary()
   @type result :: Example.Type.t()
   @type error :: any()
 
-  @spec get(id) :: {:ok, result} | {:error, error}
+  spec_and_callback get(id) :: {:ok, result} | {:error, error}
   def get(id) do
     Example.Backend.get(id)
   end
