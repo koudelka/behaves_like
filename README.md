@@ -38,7 +38,7 @@ From Hex:
 ```elixir
 def deps do
   [
-    {:behaves_like, "~> 0.3.0"}
+    {:behaves_like, "~> 0.4.0"}
   ]
 end
 ```
