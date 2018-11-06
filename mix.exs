@@ -13,7 +13,7 @@ defmodule BehavesLike.MixProject do
       dialyzer: dialyzer(),
       description: "Automatically creates a behaviour from a module's specs.",
       package: package(),
-      docs: docs(),
+      docs: docs()
     ]
   end
 
@@ -39,15 +39,19 @@ defmodule BehavesLike.MixProject do
   end
 
   defp package do
-    [maintainers: ["Michael Shapiro"],
-     licenses: ["MIT"],
-     links: %{"GitHub": "https://github.com/koudelka/behaves_like"}]
+    [
+      maintainers: ["Michael Shapiro"],
+      licenses: ["MIT"],
+      links: %{GitHub: "https://github.com/koudelka/behaves_like"}
+    ]
   end
 
   defp docs do
-    [extras: ["README.md"],
-     source_url: "https://github.com/koudelka/behaves_like",
-     source_ref: @version,
-     main: "readme"]
+    [
+      extras: ["README.md"],
+      source_url: "https://github.com/koudelka/behaves_like",
+      source_ref: @version,
+      main: "readme"
+    ]
   end
 end
