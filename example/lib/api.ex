@@ -6,6 +6,7 @@ defmodule Example.API do
   @type error :: any()
 
   spec_and_callback get(id) :: {:ok, result} | {:error, error}
+
   def get(id) do
     Example.Backend.get(id)
   end

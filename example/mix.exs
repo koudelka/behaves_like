@@ -19,7 +19,7 @@ defmodule Example.MixProject do
   defp deps do
     [
       {:behaves_like, path: ".."},
-      {:dialyxir, "~> 0.5", only: [:dev, :test], runtime: false},
+      {:dialyxir, "~> 0.5", only: [:dev, :test], runtime: false}
     ]
   end
 

@@ -21,4 +21,6 @@ before_script:
 
 script:
   - MIX_ENV=test mix dialyzer --halt-exit-status
+  - mix format --check-formatted
+  - (cd example && mix format --check-formatted)
   - mix test

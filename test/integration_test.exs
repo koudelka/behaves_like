@@ -12,7 +12,9 @@ defmodule BehavesLike.IntegrationTest do
   end
 
   defp mix(task, cd) when is_list(task) do
-    {_, exit_code} = System.cmd("mix", task, cd: cd, env: [{"MIX_ENV", "test"}], into: IO.stream(:stdio, 1))
+    {_, exit_code} =
+      System.cmd("mix", task, cd: cd, env: [{"MIX_ENV", "test"}], into: IO.stream(:stdio, 1))
+
     assert exit_code == 0
   end
 
